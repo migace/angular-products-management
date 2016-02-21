@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    div.login-form.layout-padding(layout='row' layout-align='center')
+        div(flex='50')
+            h2 #{__("Login form")}
+            form(action="/login", method="post")
+                div.input(layout-gt-xs="row")
+                    md-input-container.md-block.flex-gt-xs
+                        label #{__("Username")}
+                        input(type="text", name="username")
+                        if loginMessage.username
+                            div(ng-message="required")= loginMessage.username
+                div.input(layout-gt-xs="row")
+                    md-input-container.md-block.flex-gt-xs
+                        label #{__("Password")}
+                        input(type="password", name="password")
+                        if loginMessage.password
+                            div(ng-message="required")= loginMessage.password
+                div.input(layout-gt-xs="row")
+                    md-button.md-raised.md-primary(type="submit") #{__("Login")}
