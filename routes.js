@@ -30,6 +30,12 @@ module.exports = function(app, passport) {
     app.all('/admin', isLoggedIn, function(req, res, next) {
         adminController.run(req, res, next);
     });
+
+    // templates for angular
+    app.get('/components/:name', function (req, res) {
+        var name = req.params.name;
+        res.render('components/' + name);
+    });
 };
 
 // route middleware to make sure a user is logged in
