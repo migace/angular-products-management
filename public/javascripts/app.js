@@ -1,1 +1,3 @@
-angular.module('angular-products-management', ['ngMaterial', 'contextMenuApp']);
+angular.module('angular-products-management', [
+    'ngMaterial', 'contextMenuApp', 'ngRoute'
+]);

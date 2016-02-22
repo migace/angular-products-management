@@ -1,15 +1,17 @@
 angular.module('angular-products-management')
-    .controller('GridMenuCtrl', function($scope, $mdBottomSheet) {
+    .controller('GridMenuCtrl', function($scope, $mdBottomSheet, $window) {
         $scope.items = [
-            { name: 'Catalog', icon: 'catalog' },
-            { name: 'Mail', icon: 'mail' },
-            { name: 'Message', icon: 'message' },
-            { name: 'Settings', icon: 'settings' },
-            { name: 'Web', icon: 'web' },
+            { name: 'Dashboard', icon: 'dashboard', link: '#/' },
+            { name: 'Catalog', icon: 'catalog', link: '#/catalog' },
+            { name: 'Mail', icon: 'mail', link: '#/mail' },
+            { name: 'Message', icon: 'message', link: '#/message' },
+            { name: 'Settings', icon: 'settings', link: '#/settings' },
+            { name: 'Web', icon: 'web', link: '#/web' },
         ];
 
         $scope.listItemClick = function($index) {
             var clickedItem = $scope.items[$index];
             $mdBottomSheet.hide(clickedItem);
+            $window.location.href = clickedItem.link;
         };
     });

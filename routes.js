@@ -36,6 +36,11 @@ module.exports = function(app, passport) {
         var name = req.params.name;
         res.render('components/' + name);
     });
+
+    app.get('/partials/:name', function(req, res) {
+        var name = req.params.name;
+        res.render('partials/' + name);
+    });
 };
 
 // route middleware to make sure a user is logged in

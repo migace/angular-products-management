@@ -4,5 +4,11 @@
 	"Username": "Nazwa użytkonika",
 	"Password": "Hasło",
 	"Login": "Zaloguj",
-    "Login form": "Logowanie"
+    "Login form": "Logowanie",
+	"Catalog": "Katalog",
+    "Dashboard": "Panel",
+    "Mail": "Mail",
+    "Message": "Wiadomość",
+    "Settings": "Ustawienia",
+    "Web": "Web"
 }

@@ -4,5 +4,11 @@
     "Username": "Username",
     "Password": "Password",
     "Login": "Login",
-    "Login form": "Login form"
+    "Login form": "Login form",
+    "Catalog": "Catalog",
+    "Dashboard": "Dashboard",
+    "Mail": "Mail",
+    "Message": "Message",
+    "Settings": "Settings",
+    "Web": "Web"
 }
