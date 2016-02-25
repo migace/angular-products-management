@@ -1,7 +1,12 @@
-angular.module('angular-products-management').
-    controller('AdminCtrl', function($scope, $timeout, $mdBottomSheet, $mdToast) {
-        $scope.showGridMenuComponent = function() {
-            $scope.alert = '';
+define([
+    'app',
+    'angular.material',
+    'GridMenuController'
+], function(app) {
+    "use strict";
+
+    app.service('GridMenuService', ['$mdBottomSheet', '$mdToast', function ($mdBottomSheet, $mdToast) {
+        return function showGridMenuComponent() {
             $mdBottomSheet.show({
                 templateUrl: 'components/grid-menu',
                 controller: 'GridMenuCtrl',
@@ -15,4 +20,5 @@ angular.module('angular-products-management').
                 );
             });
         };
-    });
+    }]);
+});

@@ -25,9 +25,8 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));
 
-    // ALL
-
-    app.all('/admin', isLoggedIn, function(req, res, next) {
+    // html5 mode angular
+    app.get('/admin', isLoggedIn, function(req, res, next) {
         adminController.run(req, res, next);
     });
 
@@ -37,9 +36,13 @@ module.exports = function(app, passport) {
         res.render('components/' + name);
     });
 
-    app.get('/partials/:name', function(req, res) {
+    app.get('/admin/partials/:name', function(req, res) {
         var name = req.params.name;
-        res.render('partials/' + name);
+        res.render('admin/partials/' + name);
+    });
+
+    app.get('/admin/*', isLoggedIn, function(req, res) {
+        res.render('admin/index', { title: constants.DEFAULT_TITLE });
     });
 };
 

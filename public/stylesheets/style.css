@@ -1,7 +1,16 @@
+html, body {
+    height: 100%;
+}
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
+}
+
+/* Admin panel */
+#admin-panel,
+.admin-right-click-area {
+    width: 100%;
+    height: 100%;
 }

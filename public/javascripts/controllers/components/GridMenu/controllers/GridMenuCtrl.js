@@ -1,5 +1,7 @@
-angular.module('angular-products-management')
-    .controller('GridMenuCtrl', function($scope, $mdBottomSheet, $window) {
+define([
+    'app'
+], function(app) {
+    app.controller('GridMenuCtrl', function($scope, $mdBottomSheet, $window) {
         $scope.items = [
             { name: 'Dashboard', icon: 'dashboard', link: '#/' },
             { name: 'Catalog', icon: 'catalog', link: '#/catalog' },
@@ -15,3 +17,4 @@ angular.module('angular-products-management')
             $window.location.href = clickedItem.link;
         };
     });
+});

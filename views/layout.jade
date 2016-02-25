@@ -1,40 +1,43 @@
 doctype html
-html(ng-app='angular-products-management')
+html
     head
         title= title
         link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css')
         link(rel='stylesheet', href='/stylesheets/style.css')
-    body(ng-controller="AdminCtrl" ng-right-click="showGridMenuComponent()")
+        
+        base(href="/")
+    body
         md-toolbar.md-default
             div.md-toolbar-tools
                 h1.md-flex= title
-        div(layout="row" layout-align="center")
-            div(flex='90')
-                block content
+        
+        block content
 
-script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js')
-script(src='/javascripts/bower_components/angular-route/angular-route.min.js')
-script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js')
-script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-aria.min.js')
-script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-messages.min.js')
-script(src='//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js')
+        script(data-main='/javascripts/main' src='//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js')
+
+//- script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js')
+//- script(src='/javascripts/bower_components/angular-route/angular-route.min.js')
+//- script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-animate.min.js')
+//- script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-aria.min.js')
+//- script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-messages.min.js')
+//- script(src='//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js')
 
 // app initialize
-script(src='/javascripts/app.js')
+//script(src='/javascripts/app.js')
 
 // config
-script(src='/javascripts/config/mdIconProvider.js')
-script(src='/javascripts/config/ngRoute.js')
+//script(src='/javascripts/config/mdIconProvider.js')
+//script(src='/javascripts/config/ngRoute.js')
 
 // directives
-script(src='/javascripts/directives/context-menu.js')
+//script(src='/javascripts/directives/context-menu.js')
 
 // controllers
-script(src='/javascripts/controllers/AdminCtrl.js')
-script(src='/javascripts/controllers/components/GridMenuCtrl.js')
-script(src='/javascripts/controllers/partials/CatalogCtrl.js')
-script(src='/javascripts/controllers/partials/DashboardCtrl.js')
-script(src='/javascripts/controllers/partials/MailCtrl.js')
-script(src='/javascripts/controllers/partials/MessageCtrl.js')
-script(src='/javascripts/controllers/partials/SettingsCtrl.js')
-script(src='/javascripts/controllers/partials/WebCtrl.js')
+//- script(src='/javascripts/controllers/AdminCtrl.js')
+//- script(src='/javascripts/controllers/components/GridMenuCtrl.js')
+//- script(src='/javascripts/controllers/partials/CatalogCtrl.js')
+//- script(src='/javascripts/controllers/partials/DashboardCtrl.js')
+//- script(src='/javascripts/controllers/partials/MailCtrl.js')
+//- script(src='/javascripts/controllers/partials/MessageCtrl.js')
+//- script(src='/javascripts/controllers/partials/SettingsCtrl.js')
+//- script(src='/javascripts/controllers/partials/WebCtrl.js')
