@@ -42,7 +42,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/admin/*', isLoggedIn, function(req, res) {
-        res.render('admin/index', { title: constants.DEFAULT_TITLE });
+        adminController.run(req, res, next);
     });
 };
 

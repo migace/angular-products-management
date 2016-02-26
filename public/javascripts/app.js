@@ -20,45 +20,45 @@ define([
 
     app.config(['$routeProvider', '$locationProvider',
         function($routeProvider, $locationProvider) {
-            $locationProvider.html5Mode(true);
+            //$locationProvider.html5Mode(true);
 
             $routeProvider.
-            when('/admin',
+            when('/',
                 angularAMD.route({
                     templateUrl: 'admin/partials/dashboard',
                     controller: 'DashboardCtrl',
                     controllerUrl: '/javascripts/controllers/admin/partials/DashboardCtrl.js'
                 })
             ).
-            when('/admin/catalog',
+            when('/catalog',
                 angularAMD.route({
                     templateUrl: 'admin/partials/catalog',
                     controller: 'CatalogCtrl',
                     controllerUrl: '/javascripts/controllers/admin/partials/CatalogCtrl.js'
                 })
             ).
-            when('/admin/mail',
+            when('/mail',
                 angularAMD.route({
                     templateUrl: 'admin/partials/mail',
                     controller: 'MailCtrl',
                     controllerUrl: '/javascripts/controllers/admin/partials/MailCtrl.js'
                 })
             ).
-            when('/admin/message',
+            when('/message',
                 angularAMD.route({
                     templateUrl: 'admin/partials/message',
                     controller: 'MessageCtrl',
                     controllerUrl: '/javascripts/controllers/admin/partials/MessageCtrl.js'
                 })
             ).
-            when('/admin/settings',
+            when('/settings',
                 angularAMD.route({
                     templateUrl: 'admin/partials/settings',
                     controller: 'SettingsCtrl',
                     controllerUrl: '/javascripts/controllers/admin/partials/SettingsCtrl.js'
                 })
             ).
-            when('/admin/web',
+            when('/web',
                 angularAMD.route({
                     templateUrl: 'admin/partials/web',
                     controller: 'WebCtrl',
