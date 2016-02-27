@@ -9,6 +9,7 @@ require.config({
         'angular.material'    : '//ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min',
         'angularAMD'          : '//cdn.jsdelivr.net/angular.amd/0.2/angularAMD.min',
         'GridMenuController'  : 'components/GridMenu/controllers/GridMenuCtrl',
+        'BackModule'          : 'directives/back'
     },
     shim : {
         'angular' : {

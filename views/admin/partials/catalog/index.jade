@@ -1,0 +1,13 @@
+extends ../partialsLayout
+
+block content
+    div(id="catalog" layout="row") 
+        h1(layout-align="start center") #{__('Catalog')}
+        md-menu(id="operation-menu" layout-align="end center")
+            md-button.md-fab.md-mini(aria-label="Open operation menu" ng-click="openMenu($mdOpenMenu, $event)")
+                md-icon(md-svg-src="menu")
+            md-menu-content(width="4")
+                md-menu-item
+                    md-button(ng-href="/admin/#/catalog/create")
+                        md-icon(md-svg-icon="create" md-menu-align-target) 
+                        | #{__('Create')}

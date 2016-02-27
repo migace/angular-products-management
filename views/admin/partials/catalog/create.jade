@@ -1,0 +1,47 @@
+extends ../partialsLayout
+
+block content
+    div#catalog-create(layout="row" layout-wrap)  
+        h1(layout="row" flex="100")
+            md-button.md-icon-button.back-button-top(layout-align="left start" aria-label="Back" ng-href="admin/#/catalog")
+                md-icon(md-svg-icon="left-arrow")
+            span(layout-align="left center") #{__('Create')}
+            
+        div(layout="row" layout-align="center" flex="100" layout-wrap)
+            form#product-create-form.md-inline-form(ng-cloak flex="80" layout-align="center" ng-submit="submit()")
+                md-content(md-theme="docs-dark" layout-gt-sm="row")
+                    md-input-container.md-block.flex-gt-xs
+                        label #{__('Name')}
+                        input(ng-model="product.name")
+                    md-input-container.md-block.flex-gt-xs
+                        label #{__('SKU')}
+                        input(ng-model="product.sku")
+                md-content
+                    div(layout="row")
+                        md-input-container.md-block.flex-gt-xs
+                            label #{__('Image (Disabled in this version.)')}
+                            input(ng-model="product.image" disabled)
+                        md-datepicker(ng-model="product.availability" md-placeholder="#{__('Availability')}")
+                    div(layout="row")
+                        md-contact-chips.md-block(
+                            flex-gt-sm
+                            ng-model="product.categories"
+                            md-contacts="ctrl.querySearch($query)"
+                            md-contact-name="name"
+                            md-contact-image="image"
+                            md-contact-email="email"
+                            md-require-match="true"
+                            md-highlight-flags="i"
+                            filter-selected="ctrl.filterSelected"
+                            placeholder="Categories")
+                    div(layout="row")
+                        md-input-container.md-block(flex-gt-sm) 
+                            label #{__('Description')}
+                            textarea(ng-model="product.description" md-maxlength="150" rows="5" md-select-on-focus)
+                        md-input-container.md-icon-float.md-icon-right.md-block(flex-gt-sm) 
+                            label #{__('Price')}
+                            input(ng-model="product.price" type="number" step="0.01")
+                            md-icon(md-svg-src="euro") 
+                    div(layout="row" layout-align="center center")
+                        md-button.md-fab.md-mini(style="background-color: green;" aria-label="Create" type="submit")
+                            md-icon(md-svg-src="ok")

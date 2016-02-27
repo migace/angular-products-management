@@ -22,8 +22,9 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
+//Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 i18n.configure({
   // setup some locales - other locales default to en silently
   locales: ['en', 'pl'],
@@ -44,6 +45,7 @@ app.use(cookieParser());
 app.use(i18n.init);
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({ secret: 'angularproductsmanagementsecretsession' }));
 app.use(passport.initialize());
 app.use(passport.session());

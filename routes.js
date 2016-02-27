@@ -1,6 +1,9 @@
 var constants = require('./helpers/constants')
     adminController = require('./controllers/admin/index');
-    indexController = require('./controllers/index');
+    indexController = require('./controllers/index'),
+    productApiGetController = require('./controllers/api/get/product'),
+    productApiPostController = require('./controllers/api/post/product'),
+    mongoose = require('mongoose');
 
 module.exports = function(app, passport) {
     // GET
@@ -26,23 +29,33 @@ module.exports = function(app, passport) {
     }));
 
     // html5 mode angular
+    /*
+    app.get('/admin/*', isLoggedIn, function(req, res) {
+        adminController.run(req, res, next);
+    });
+    */
+
     app.get('/admin', isLoggedIn, function(req, res, next) {
         adminController.run(req, res, next);
     });
 
-    // templates for angular
-    app.get('/components/:name', function (req, res) {
+    // static files (rendering templates)
+    app.get('/components/*', function (req, res) {
         var name = req.params.name;
-        res.render('components/' + name);
+        res.render(req.path.substring(1));
     });
 
-    app.get('/admin/partials/:name', function(req, res) {
-        var name = req.params.name;
-        res.render('admin/partials/' + name);
+    app.get('/admin/partials/*', function(req, res) {
+        console.log('dsdsd: '+req.path);
+        res.render(req.path.substr(1));
     });
 
-    app.get('/admin/*', isLoggedIn, function(req, res) {
-        adminController.run(req, res, next);
+    // rest api
+    app.get('/api/v1/products', function(req, res, next) {
+        productApiGetController.run(req, res, next);
+    });
+    app.post('/api/v1/product', function(req, res, next) {
+        productApiPostController.run(req, res, next);
     });
 };
 
