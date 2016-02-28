@@ -1,4 +1,7 @@
 extends ../layout
 
+block header_before 
+    link(rel='stylesheet', href='/javascripts/bower_components/angular-material-data-table/dist/md-data-table.min.css')
+
 block content 
     div#admin-panel(layout="row" layout-align="center" ng-view)

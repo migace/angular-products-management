@@ -1,0 +1,8 @@
+{
+  "name": "angular-products-management",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-material-data-table": "^0.9.11"
+  },
+  "private": true
+}

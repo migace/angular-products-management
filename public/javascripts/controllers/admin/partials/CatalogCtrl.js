@@ -52,6 +52,20 @@ define([
                 updated: "",
                 image: ""
             };
+
+            $scope.products = [];
+
+            $http({
+                method: 'GET',
+                url: API_CONFIG.URL + API_CONFIG.GET_PRODUCT,
+            }).then(
+                function successCallback(response) {
+                    console.log(response);
+                    $scope.products = response.data;                  
+                },
+                function errorCallback(response) {
+                }
+            );
         }
     ]);
 });

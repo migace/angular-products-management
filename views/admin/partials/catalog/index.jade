@@ -1,7 +1,7 @@
 extends ../partialsLayout
 
 block content
-    div(id="catalog" layout="row") 
+    div(id="catalog" layout="row" flex="100" layout-wrap) 
         h1(layout-align="start center") #{__('Catalog')}
         md-menu(id="operation-menu" layout-align="end center")
             md-button.md-fab.md-mini(aria-label="Open operation menu" ng-click="openMenu($mdOpenMenu, $event)")
@@ -11,3 +11,26 @@ block content
                     md-button(ng-href="/admin/#/catalog/create")
                         md-icon(md-svg-icon="create" md-menu-align-target) 
                         | #{__('Create')}
+        div(layout="row" flex="100" layout-align="center center")
+            md-table-container(flex="80" layout-align="center center")
+                table(md-table md-row-select ng-model="selected" md-progress="promise")
+                    thead(md-head md-order="query.order" md-on-reorder="onReorder")
+                        tr(md-row)
+                            th(md-column md-order-by="nameToLower")
+                                span #{__('Name')}
+                            th(md-column md-numeric) #{__('SKU')}
+                            th(md-column md-numeric) #{__('Categories')}
+                            th(md-column md-numeric) #{__('Price')}
+                            th(md-column md-numeric) #{__('Availability')}
+                    tbody(md-body)
+                        tr(md-row md-select="dessert" md-select-id="{{dessert.name}}" md-auto-select ng-repeat="product in products")
+                            td(md-cell)
+                                {{ product.name }}
+                            td(md-cell)
+                                {{ product.sku }}
+                            td(md-cell)
+                                span(ng-show="product.categories.length > 0") {{ product.categories }}
+                            td(md-cell)
+                                {{ product.price.base }}
+                            td(md-cell)
+                                {{ product.availability | date : 'dd-MM-yyyy' }}
