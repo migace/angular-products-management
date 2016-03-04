@@ -2,6 +2,8 @@ extends ../layout
 
 block header_before 
     link(rel='stylesheet', href='/javascripts/bower_components/angular-material-data-table/dist/md-data-table.min.css')
+    link(rel='stylesheet', href='/stylesheets/angular-flash.min.css')
 
 block content 
+    flash-message(duration="5000" show-close="true")
     div#admin-panel(layout="row" layout-align="center" ng-view)

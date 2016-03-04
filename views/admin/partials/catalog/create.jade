@@ -8,7 +8,7 @@ block content
             span(layout-align="left center") #{__('Create')}
             
         div(layout="row" layout-align="center" flex="100" layout-wrap)
-            form#product-create-form.md-inline-form(ng-cloak flex="80" layout-align="center" ng-submit="submit()")
+            form#product-create-form.md-inline-form(ng-cloak flex="80" layout-align="center")
                 md-content(md-theme="docs-dark" layout-gt-sm="row")
                     md-input-container.md-block.flex-gt-xs
                         label #{__('Name')}
@@ -23,17 +23,19 @@ block content
                             input(ng-model="product.image" disabled)
                         md-datepicker(ng-model="product.availability" md-placeholder="#{__('Availability')}")
                     div(layout="row")
-                        md-contact-chips.md-block(
-                            flex-gt-sm
-                            ng-model="product.categories"
-                            md-contacts="ctrl.querySearch($query)"
-                            md-contact-name="name"
-                            md-contact-image="image"
-                            md-contact-email="email"
-                            md-require-match="true"
-                            md-highlight-flags="i"
-                            filter-selected="ctrl.filterSelected"
-                            placeholder="Categories")
+                        md-chips(ng-model="product.categories" 
+                                 md-autocomplete-snap
+                                 md-transform-chip="transformChip($chip)"
+                                 md-require-match=true
+                                 flex="100")
+                            md-autocomplete(md-selected-item="selectedCategory"
+                                            md-search-text="searchText"
+                                            md-items="item in querySearch(searchText)"
+                                            md-item-text="item.name"
+                                            placeholder="Categories")
+                                span(md-highlight-text="searchText") {{item.name}}
+                            md-chip-template
+                                strong {{$chip.name}}
                     div(layout="row")
                         md-input-container.md-block(flex-gt-sm) 
                             label #{__('Description')}
@@ -43,5 +45,5 @@ block content
                             input(ng-model="product.price" type="number" step="0.01")
                             md-icon(md-svg-src="euro") 
                     div(layout="row" layout-align="center center")
-                        md-button.md-fab.md-mini(style="background-color: green;" aria-label="Create" type="submit")
+                        md-button.md-fab.md-mini(style="background-color: green;" aria-label="Create" ng-click="submit()")
                             md-icon(md-svg-src="ok")

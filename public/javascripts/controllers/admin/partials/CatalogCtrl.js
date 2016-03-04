@@ -5,7 +5,15 @@ define([
 ], function(app) {
     app.controller('CatalogCtrl', [
         '$scope', '$http','GridMenuService', 'CreateMenuService', 'API_CONFIG',
-        function($scope, $http, GridMenuService, CreateMenuService, API_CONFIG) {
+        'Flash', '$location',
+        function($scope, $http, GridMenuService, CreateMenuService, API_CONFIG, Flash,
+                 $location) {
+            $scope.searchText = null;
+            $scope.availableCategories = [];
+            $scope.products = [];
+            $scope.selectedCategory = null;
+            $scope.autocompleteDemoRequireMatch = false;
+
             $scope.showGridMenuComponent = function() {
                 GridMenuService();
             };
@@ -15,8 +23,6 @@ define([
             };
 
             $scope.submit = function() {
-                console.log(this.product);
-
                 // to do
                 if (this.product.name === "" || this.product.sku === "" ||
                     this.product.availability === "" || this.product.description === "" ||
@@ -32,8 +38,12 @@ define([
                     data: this.product
                 }).then(
                     function successCallback(response) {
+                        var message, id;
                         console.log('Dane zostały poprawnie wysłane.');
                         console.log(response);
+                        message = '<strong> Gotowe!</strong>  Produkt został poprawnie dodany.';
+                        id = Flash.create('success', message, 0, {class: 'custom-class', id: 'custom-id'}, true);
+                        $location.path('admin/#/catalog');
                     },
                     function errorCallback(response) {
                         console.log('Wystąpił problem z wysłaniem danych');
@@ -47,21 +57,59 @@ define([
                 sku: "",
                 availability: "",
                 description: "",
-                categories: "",
+                categories: [],
                 created: "",
                 updated: "",
                 image: ""
             };
 
-            $scope.products = [];
+            $scope.querySearch = function(query) {
+                var results = query ? this.availableCategories.filter(this.createFilterFor(query)) : [];
+                return results;
+            }
+
+            // Create filter function for a query string
+            $scope.createFilterFor = function(query) {
+                var lowercaseQuery = angular.lowercase(query);
+                return function filterFn(element) {
+                    return (element._lowername.indexOf(lowercaseQuery) === 0);
+                };
+            }
+
+            // Return the proper object when the append is called.
+            $scope.transformChip = function(chip) {
+                // If it is an object, it's already a known chip
+                if (angular.isObject(chip)) {
+                    return chip;
+                }
+
+                // Otherwise, create a new one
+                return { name: chip }
+            }
 
             $http({
                 method: 'GET',
                 url: API_CONFIG.URL + API_CONFIG.GET_PRODUCT,
             }).then(
                 function successCallback(response) {
-                    console.log(response);
-                    $scope.products = response.data;                  
+                    $scope.products = response.data;
+                },
+                function errorCallback(response) {
+                }
+            );
+
+            $http({
+                method: 'GET',
+                url: API_CONFIG.URL + API_CONFIG.GET_CATEGORY,
+            }).then(
+                function successCallback(response) {
+                    var categories = response.data;
+                    categories.map(function(element) {
+                        element._lowername = element.name.toLowerCase();
+                        return element;
+                    });
+
+                    $scope.availableCategories = categories;
                 },
                 function errorCallback(response) {
                 }

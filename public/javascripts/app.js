@@ -4,18 +4,21 @@ define([
     'angular.route',
     'BackModule',
     'directives/context-menu',
-    'angular.material.table'
+    'angular.material.table',
+    'angular.flash'
 ], function(angularAMD) {
     var app = angular.module('angular-products-management', [
         'ngMaterial', 'contextMenuApp', 'ngRoute', 'ngAnimate',
-        'BackModule', 'md.data.table'
+        'BackModule', 'md.data.table', 'ngFlash'
     ]);
 
     app.constant(
         "API_CONFIG", {
             "URL": "http://localhost:3000/api/v1",
             "POST_PRODUCT": "/product",
-            "GET_PRODUCT": "/products"
+            "GET_PRODUCT": "/products",
+            "POST_CATEGORY": "/category",
+            "GET_CATEGORY": "/categories"
         }
     );
 

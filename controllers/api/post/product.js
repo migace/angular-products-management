@@ -5,11 +5,16 @@ var baseController = require('../../base'),
 module.exports = baseController.extend({
     name: 'product',
     run: function(req, res, next) {
+        var categories = [];
+        req.body.categories.forEach(function(index, element) {
+            categories.push({id: element._id, name: element.name});
+        });
+
         var product = new productModel({
             name: req.body.name,
             sku: req.body.sku,
-            price: { base: req.body.price, tax: 0.23 },
-            categories: [],
+            price: { base: req.body.price || 0.00, tax: 0.23 },
+            categories: categories,
             description: req.body.description,
             availability: req.body.availability,
             created: new Date(),

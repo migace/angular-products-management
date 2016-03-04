@@ -10,7 +10,7 @@ block content
                 md-menu-item
                     md-button(ng-href="/admin/#/catalog/create")
                         md-icon(md-svg-icon="create" md-menu-align-target) 
-                        | #{__('Create')}
+                        | #{__('Create product')}
         div(layout="row" flex="100" layout-align="center center")
             md-table-container(flex="80" layout-align="center center")
                 table(md-table md-row-select ng-model="selected" md-progress="promise")
@@ -25,11 +25,11 @@ block content
                     tbody(md-body)
                         tr(md-row md-select="dessert" md-select-id="{{dessert.name}}" md-auto-select ng-repeat="product in products")
                             td(md-cell)
-                                {{ product.name }}
+                                {{product.name}}
                             td(md-cell)
-                                {{ product.sku }}
+                                {{product.sku}}
                             td(md-cell)
-                                span(ng-show="product.categories.length > 0") {{ product.categories }}
+                                span(ng-show="product.categories.length > 0" ng-repeat="item in product.categories") {{ item.name }}
                             td(md-cell)
                                 {{ product.price.base }}
                             td(md-cell)

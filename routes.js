@@ -3,6 +3,8 @@ var constants = require('./helpers/constants')
     indexController = require('./controllers/index'),
     productApiGetController = require('./controllers/api/get/product'),
     productApiPostController = require('./controllers/api/post/product'),
+    categoryApiGetController = require('./controllers/api/get/category'),
+    categoryApiPostController = require('./controllers/api/post/category'),
     mongoose = require('mongoose');
 
 module.exports = function(app, passport) {
@@ -46,16 +48,24 @@ module.exports = function(app, passport) {
     });
 
     app.get('/admin/partials/*', function(req, res) {
-        console.log('dsdsd: '+req.path);
         res.render(req.path.substr(1));
     });
 
     // rest api
+    /* PRODUCTS */
     app.get('/api/v1/products', function(req, res, next) {
         productApiGetController.run(req, res, next);
     });
     app.post('/api/v1/product', function(req, res, next) {
         productApiPostController.run(req, res, next);
+    });
+
+    /* CATEGORIES */
+    app.get('/api/v1/categories', function(req, res, next) {
+        categoryApiGetController.run(req, res, next);
+    });
+    app.post('/api/v1/category', function(req, res, next) {
+        categoryApiPostController.run(req, res, next);
     });
 };
 
