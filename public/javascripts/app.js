@@ -15,10 +15,17 @@ define([
     app.constant(
         "API_CONFIG", {
             "URL": "http://localhost:3000/api/v1",
-            "POST_PRODUCT": "/product",
-            "GET_PRODUCT": "/products",
-            "POST_CATEGORY": "/category",
-            "GET_CATEGORY": "/categories"
+            "PRODUCT_ACTION_DELETE": "/product/delete",
+            "PRODUCT_ACTION_CREATE": "/product/create",
+            "PRODUCT_ACTION_EDIT": "/product/edit",
+            "PRODUCT_ACTION_GET_ALL": "/product/getAll",
+            "PRODUCT_ACTION_GET": "/product/get",
+            "CATEGORY_ACTION_CREATE": "/category/create",
+            "CATEGORY_ACTION_GET_ALL": "/category/getAll"
+        }
+    ).constant(
+        "STATUSES", {
+            "SUCCESS": 200
         }
     );
 
@@ -36,7 +43,9 @@ define([
             .icon('right-arrow', '/images/icons/right-arrow.svg', 24)
             .icon('price', '/images/icons/price.svg', 24)
             .icon('ok', '/images/icons/ok.svg', 24)
-            .icon('euro', '/images/icons/euro.svg', 24);
+            .icon('euro', '/images/icons/euro.svg', 24)
+            .icon('edit', '/images/icons/edit.svg', 24)
+            .icon('trash', '/images/icons/trash.svg', 24);
 
         $mdThemingProvider.theme('docs-dark');
     });
@@ -63,6 +72,13 @@ define([
             when('/catalog/create',
                 angularAMD.route({
                     templateUrl: '/admin/partials/catalog/create',
+                    controller: 'CatalogCtrl',
+                    controllerUrl: '/javascripts/controllers/admin/partials/CatalogCtrl.js'
+                })
+            ).
+            when('/catalog/edit/:sku',
+                angularAMD.route({
+                    templateUrl: '/admin/partials/catalog/edit',
                     controller: 'CatalogCtrl',
                     controllerUrl: '/javascripts/controllers/admin/partials/CatalogCtrl.js'
                 })

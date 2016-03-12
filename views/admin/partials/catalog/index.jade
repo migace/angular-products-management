@@ -22,15 +22,21 @@ block content
                             th(md-column md-numeric) #{__('Categories')}
                             th(md-column md-numeric) #{__('Price')}
                             th(md-column md-numeric) #{__('Availability')}
+                            th(md-column) #{__('Actions')}
                     tbody(md-body)
                         tr(md-row md-select="dessert" md-select-id="{{dessert.name}}" md-auto-select ng-repeat="product in products")
                             td(md-cell)
-                                {{product.name}}
+                                | {{product.name}}
                             td(md-cell)
-                                {{product.sku}}
+                                | {{product.sku}}
                             td(md-cell)
-                                span(ng-show="product.categories.length > 0" ng-repeat="item in product.categories") {{ item.name }}
+                                span(ng-show="product.categories.length > 0" ng-repeat="item in product.categories track by $index") {{ item.name }}
                             td(md-cell)
-                                {{ product.price.base }}
+                                | {{ product.price.base }}
                             td(md-cell)
-                                {{ product.availability | date : 'dd-MM-yyyy' }}
+                                | {{ product.availability | date : 'dd-MM-yyyy' }}
+                            td(md-cell)
+                                md-button.md-fab.md-mini.md-primary(aria-label="Edit record" ng-href="/admin/#/catalog/edit/{{ product.sku }}")
+                                    md-icon(md-svg-src="edit")
+                                md-button.md-fab.md-mini.md-warn(aria-label="Delete record" ng-click="showConfirm($event, product)")
+                                    md-icon(md-svg-src="trash")

@@ -3,7 +3,7 @@ var baseController = require('../../base'),
     categoryModel = require('./../../../models/category');
 
 module.exports = baseController.extend({
-    name: 'category',
+    name: 'category_create',
     res: null,
 
     run: function(req, res, next) {

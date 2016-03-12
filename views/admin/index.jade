@@ -6,4 +6,5 @@ block header_before
 
 block content 
     flash-message(duration="5000" show-close="true")
-    div#admin-panel(layout="row" layout-align="center" ng-view)
+    div#admin-panel(layout="row" layout-align="center")
+        div.fade(ng-view)

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var userShema = new mongoose.Schema({
     name: String,
-    sku: String,
+    sku: {type: String, unique: true, required: true},
     price: { base: Number, tax: Number },
     categories: Array,
     description: String,

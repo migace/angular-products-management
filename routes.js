@@ -1,10 +1,13 @@
 var constants = require('./helpers/constants')
     adminController = require('./controllers/admin/index');
     indexController = require('./controllers/index'),
-    productApiGetController = require('./controllers/api/get/product'),
-    productApiPostController = require('./controllers/api/post/product'),
-    categoryApiGetController = require('./controllers/api/get/category'),
-    categoryApiPostController = require('./controllers/api/post/category'),
+    productsApiGetAllController = require('./controllers/api/product/getAll'),
+    productsApiGetController = require('./controllers/api/product/get'),
+    productApiCreateController = require('./controllers/api/product/create'),
+    productApiEditController = require('./controllers/api/product/edit'),
+    productApiDeleteController = require('./controllers/api/product/delete'),
+    categoryApiCreateController = require('./controllers/api/category/create'),
+    categoryApiGetAllController = require('./controllers/api/category/getAll'),
     mongoose = require('mongoose');
 
 module.exports = function(app, passport) {
@@ -52,26 +55,34 @@ module.exports = function(app, passport) {
     });
 
     // rest api
-    /* PRODUCTS */
-    app.get('/api/v1/products', function(req, res, next) {
-        productApiGetController.run(req, res, next);
+    /* PRODUCT */
+    app.post('/api/v1/product/create', function(req, res, next) {
+        productApiCreateController.run(req, res, next);
     });
-    app.post('/api/v1/product', function(req, res, next) {
-        productApiPostController.run(req, res, next);
+    app.post('/api/v1/product/edit/:sku', function(req, res, next) {
+        productApiEditController.run(req, res, next);
+    });
+    app.get('/api/v1/product/delete/:sku', function(req, res, next) {
+        productApiDeleteController.run(req, res, next);
+    });
+    app.get('/api/v1/product/getAll', function(req, res, next) {
+        productsApiGetAllController.run(req, res, next);
+    });
+    app.get('/api/v1/product/get/:sku', function(req, res, next) {
+        productsApiGetController.run(req, res, next);
     });
 
-    /* CATEGORIES */
-    app.get('/api/v1/categories', function(req, res, next) {
-        categoryApiGetController.run(req, res, next);
+    /* CATEGORY */
+    app.get('/api/v1/category/getAll', function(req, res, next) {
+        categoryApiGetAllController.run(req, res, next);
     });
-    app.post('/api/v1/category', function(req, res, next) {
-        categoryApiPostController.run(req, res, next);
+    app.post('/api/v1/category/create', function(req, res, next) {
+        categoryApiCreateController.run(req, res, next);
     });
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();

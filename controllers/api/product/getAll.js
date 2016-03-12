@@ -1,11 +1,11 @@
 var baseController = require('../../base'),
     constants = require('../../../helpers/constants'),
-    categoryModel = require('./../../../models/category');
+    productModel = require('./../../../models/product');
 
 module.exports = baseController.extend({
-    name: 'category',
+    name: 'product_get_all',
     run: function(req, res, next) {
-        categoryModel.find({}, function(err, docs) {
+        productModel.find({}, function(err, docs) {
             return res.json(docs);
         });
     }

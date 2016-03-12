@@ -5,7 +5,7 @@ block content
         h1(layout="row" flex="100")
             md-button.md-icon-button.back-button-top(layout-align="left start" aria-label="Back" ng-href="admin/#/catalog")
                 md-icon(md-svg-icon="left-arrow")
-            span(layout-align="left center") #{__('Create')}
+            span(layout-align="left center") #{__('Edit')}
             
         div(layout="row" layout-align="center" flex="100" layout-wrap)
             form#product-create-form.md-inline-form(ng-cloak flex="80" layout-align="center")
@@ -50,5 +50,5 @@ block content
                             input(ng-model="product.price.base" type="number" step="0.01")
                             md-icon(md-svg-src="euro") 
                     div(layout="row" layout-align="center center")
-                        md-button.md-fab.md-mini(style="background-color: green;" aria-label="Create" ng-click="createProduct()")
+                        md-button.md-fab.md-mini(style="background-color: green;" aria-label="Create" ng-click="updateProduct()")
                             md-icon(md-svg-src="ok")
